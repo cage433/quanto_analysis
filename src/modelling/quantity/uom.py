@@ -66,6 +66,10 @@ class UOM:
         return self in CURRENCIES
 
     @property
+    def is_fx_uom(self):
+        return self.numerator.is_ccy and self.denominator.is_ccy
+
+    @property
     def numerator(self):
         return UOM({k:v for k, v in self.powers.items() if v > 0})
 

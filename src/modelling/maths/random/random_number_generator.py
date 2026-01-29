@@ -13,9 +13,15 @@ __all__ = [
 class RandomNumberGenerator:
     """A wrapper around numpy's `random` with additional methods"""
 
-    def __init__(self, seed):
-        self.seed = seed
+    def __init__(self, seed: int):
+        self.seed: int = seed
         self._random = np.random.RandomState(seed)
+
+    @staticmethod
+    def random() -> 'RandomNumberGenerator':
+        rnd = np.random.RandomState()
+        return RandomNumberGenerator(rnd.randint(0, 1000000))
+
 
     def uniform(self, x1=None, x2=None, size=None):
         """Returns a float (or ndarray of floats) in the range [0, 1), [0, x1) or [x1, x2) depending on whether

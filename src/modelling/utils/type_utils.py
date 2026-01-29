@@ -1,7 +1,18 @@
+from numbers import Number
+
+
+
 def checked_subclass(obj_type, parent_type):
     assert issubclass(obj_type, parent_type), f"{obj_type} is not a subclass of {parent_type}"
     return obj_type
 
+
+def checked_number(obj) -> float:
+    return checked_type(obj, Number)
+
+def checked_qty(obj):
+    from modelling.quantity.quantity import Qty
+    return checked_type(obj, Qty)
 
 def checked_type(obj, expected_type):
     if isinstance(expected_type, (type, list, tuple)):
